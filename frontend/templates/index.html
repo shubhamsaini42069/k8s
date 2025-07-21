@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            margin: 0;
+            padding: 40px;
+        }
+        h1 {
+            color: #1976d2;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .section-title {
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to SimpleApp!</h1>
+    <p>This is a simple web page served by your Kubernetes application.</p>
+
+    <div class="section-title">Names from Backend:</div>
+    {% for name in data %}
+        <p>{{ name }}</p>
+    {% endfor %}
+
+    <div class="section-title">Environment Variables:</div>
+    {% for key, value in env.items() %}
+        <p><strong>{{ key }}</strong>: {{ value }}</p>
+    {% endfor %}
+</body>
+</html>

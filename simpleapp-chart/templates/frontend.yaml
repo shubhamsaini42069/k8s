@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-shubham
+spec:
+  selector:
+    matchLabels:
+      app: frontend-shubham
+  template:
+    metadata:
+      labels:
+        app: frontend-shubham
+    spec:
+      containers:
+      - name: frontend-shubham
+        image: docker.io/shubhamsaini42069/frontendmongo
+        
+        ports:
+        - containerPort: 9000
+        env:
+        - name: BACKEND_URL
+          value: "http://backend-shubham"  # Use the service name of the backend
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-shubham
+spec:
+  selector:
+    app: frontend-shubham
+  ports:
+  - port: 80
+    targetPort: 9000
+        

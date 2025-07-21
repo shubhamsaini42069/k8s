@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-shubham
+spec:
+  selector:
+    matchLabels:
+      app: backend-shubham
+  template:
+    metadata:
+      labels:
+        app: backend-shubham
+    spec:
+      containers:
+      - name: backend-shubham
+        image: docker.io/shubhamsaini42069/backendmongo
+       
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_HOST
+          value: "mongo"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-shubham
+spec:
+  selector:
+    app: backend-shubham
+  ports:
+  - port: 80
+    targetPort: 5000
+    
+
